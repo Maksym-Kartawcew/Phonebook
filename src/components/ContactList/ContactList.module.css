@@ -1,0 +1,33 @@
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: rgb(176, 227, 255);
+  border-radius: 74px;
+  padding-left: 20px;
+  margin-top: 15px;
+
+  color: rgb(8, 46, 67);
+}
+
+ul {
+  
+  list-style: none;
+  margin-top: 25px;
+  padding: 0;
+
+  width: 500px;
+}
+
+.contactsBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.listItem {
+  margin: 0;
+  padding: 0;
+}

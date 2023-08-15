@@ -1,0 +1,11 @@
+.filterBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.filterTitle {
+  text-align: center;
+  font-size: medium;
+}
