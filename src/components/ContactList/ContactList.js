@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectFilter } from 'redux/selector';
+import { selectContacts, selectFilter } from 'redux/selectors';
 import { fetchContacts, deleteContact } from 'redux/operations';
 
 import styles from './ContactList.module.css';
@@ -18,8 +18,6 @@ const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-
-  
   const filteredContacts = () => {
     if (filter.length > 0) {
       return contactItems.filter(contact =>
@@ -32,7 +30,6 @@ const ContactList = () => {
 
   const filteredContactsArray = filteredContacts();
 
-  
   return (
     <ul className={styles.contactsBox}>
       {filteredContactsArray.map(contact => (
