@@ -16,13 +16,15 @@ export const App = () => {
   const logedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    if (!token) return;
+    if (!token || logedIn) return;
 
     dispatch(refreshUserThunk());
-  }, [token, dispatch]);
+  }, [token, dispatch, logedIn]);
 
   const handleLogOut = () => {
-    dispatch(logoutUserThunk());
+    // window.location.reload();
+
+        dispatch(logoutUserThunk());
   };
 
   return (

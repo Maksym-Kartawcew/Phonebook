@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const $instance = axios.create({
+export const $instance = axios.create({
   baseURL: 'https://connections-api.herokuapp.com',
 });
 
@@ -25,7 +25,7 @@ export const registerUserThunk = createAsyncThunk(
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue({
-        message: error.response.data, // Store the error message
+        message: error.response.data,
       });
     }
   }
@@ -41,7 +41,7 @@ export const loginUserThunk = createAsyncThunk(
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue({
-        message: error.response.data, // Store the error message
+        message: error.response.data,
       });
     }
   }
@@ -78,39 +78,40 @@ export const logoutUserThunk = createAsyncThunk(
   }
 );
 
-// data contacts
-export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAll',
-  async (_, thunkAPI) => {
-    try {
-      const response = await $instance.get('/contacts');
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// // data contacts
+// export const fetchContactsThunk = createAsyncThunk(
+//   'contacts/getAll',
+//   async (_, thunkApi) => {
+//     try {
+//       const { data } = await $instance.get('/contacts');
 
-export const addContact = createAsyncThunk(
-  'contacts/addContact',
-  async (newContact, thunkAPI) => {
-    try {
-      const response = await $instance.post('/contacts', newContact);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+//       return data;
+//     } catch (error) {
+//       return thunkApi.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
-export const deleteContact = createAsyncThunk(
-  'contacts/deleteContact',
-  async (contactId, thunkAPI) => {
-    try {
-      const response = await $instance.delete(`/contacts/${contactId}`);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const addContact = createAsyncThunk(
+//   'contacts/addContact',
+//   async (newContact, thunkAPI) => {
+//     try {
+//       const response = await $instance.post('/contacts', newContact);
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+// export const deleteContact = createAsyncThunk(
+//   'contacts/deleteContact',
+//   async (contactId, thunkAPI) => {
+//     try {
+//       const response = await $instance.delete(`/contacts/${contactId}`);
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );

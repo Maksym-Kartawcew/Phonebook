@@ -1,12 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-// import { selectIsLoggedIn } from 'redux/selectors';
-// import { Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/selectors';
+import { Navigate } from 'react-router-dom';
 import { loginUserThunk } from 'redux/operations';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  // const loggedIn = useSelector(selectIsLoggedIn);
+  const logedIn = useSelector(selectIsLoggedIn);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -16,10 +16,6 @@ const LoginPage = () => {
     const email = form.elements.userEmail.value;
     const password = form.elements.userPassword.value;
 
-    // const finalUserData = { name, email, password };
-
-    // console.log(finalUserData);
-
     dispatch(
       loginUserThunk({
         email,
@@ -28,7 +24,7 @@ const LoginPage = () => {
     );
   };
 
-  // if (loggedIn) return <Navigate to="/contacts" />;
+  if (logedIn) return <Navigate to="/contacts" />;
 
   return (
     <div>
