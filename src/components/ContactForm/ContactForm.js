@@ -1,73 +1,43 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+import { selectUserContacts } from 'redux/selectors';
+import { addContactThunk } from 'redux/operations';
 import styles from './ContactForm.module.css';
 
 const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const contacts = useSelector(selectUserContacts);
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    if (name === 'name') {
-      setName(value);
-    } else if (name === 'number') {
-      setNumber(value);
-    }
-  };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const newContact = {
-      name,
-      number,
-    };
+  const handleSubmit = event => {
+    event.preventDefault();
 
-    const existingContact = contacts.find(
-      contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
-    );
+    const form = event.currentTarget;
 
-    if (existingContact) {
-      alert(`${existingContact.name} is already in contacts.`);
-      return;
-    }
+    const name = form.elements.contactName.value;
+    const number = form.elements.contactNumber.value;
 
-    dispatch(addContact(newContact));
-    setName('');
-    setNumber('');
+    if (contacts.some(contact => contact.name === name))
+      return alert(`Contact with name ${name} already exists!`);
+
+    dispatch(addContactThunk({ name, number }));
   };
 
   return (
     <div className={styles.sectionBox}>
-      <form onSubmit={handleSubmit} className={styles.inputBox}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter your name..."
-          pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          value={name}
-          onChange={handleChange}
-        />
-
-        <input
-          type="tel"
-          name="number"
-          placeholder="Enter your number..."
-          pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          value={number}
-          onChange={handleChange}
-        />
-
-        <button type="submit">Add Contact</button>
-      </form>
+         <form onSubmit={handleSubmit}>
+        <label>
+          <p>Name:</p>
+          <input name="contactName" type="text" required />
+        </label>
+        <br />
+        <label>
+          <p>Number:</p>
+          <input name="contactNumber" type="text" required />
+        </label>
+        <br />
+        <button type="submit">Add contact</button>
+            </form>
     </div>
   );
 };

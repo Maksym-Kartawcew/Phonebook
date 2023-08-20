@@ -1,44 +1,9 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { $instance } from '../operations';
-
-export const requestContactsThunk = createAsyncThunk(
-  'contacts/getAll',
-  async (_, thunkApi) => {
-    try {
-      const { data } = await $instance.get('/contacts');
-
-      return data;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const addContactThunk = createAsyncThunk(
-  'contacts/addContact',
-  async (contactData, thunkApi) => {
-    try {
-      const { data } = await $instance.post('/contacts', contactData);
-
-      return data;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const deleteContactThunk = createAsyncThunk(
-  'contacts/deleteContact',
-  async (contactId, thunkApi) => {
-    try {
-      const { data } = await $instance.delete(`/contacts/${contactId}`);
-
-      return data;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
+import { createSlice } from '@reduxjs/toolkit';
+import {
+  requestContactsThunk,
+  addContactThunk,
+  deleteContactThunk,
+} from '../operations';
 
 const initialState = {
   contacts: null,
@@ -70,7 +35,6 @@ const contactsSlice = createSlice({
       })
       .addCase(addContactThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.contacts = [...state.contacts, action.payload];
         state.contacts.push(action.payload);
       })
       .addCase(addContactThunk.rejected, (state, action) => {
@@ -84,9 +48,6 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContactThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.contacts = state.contacts.filter(
-        //   contact => contact.id !== action.payload.id
-        // );
         const indexDeletedContact = state.contacts.findIndex(
           contact => contact.id === action.payload.id
         );
@@ -98,8 +59,6 @@ const contactsSlice = createSlice({
       }),
 });
 
-export const selectUserContacts = state => state.contacts.contacts;
-export const selectContactsIsLoading = state => state.contacts.isLoading;
-export const selectContactsError = state => state.contacts.error;
+
 
 export const contactsReducer = contactsSlice.reducer;

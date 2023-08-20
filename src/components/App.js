@@ -1,9 +1,11 @@
-import { Suspense, lazy, useEffect } from 'react';
-import { Route, Routes, NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { refreshUserThunk, logoutUserThunk } from 'redux/operations';
-
-import { selectIsLoggedIn, selectToken } from 'redux/selectors';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { refreshUserThunk } from 'redux/operations';
+import { Routes, Route } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+import PrivateRoute from './Private Route/PrivateRoute';
+import Loader from './Loader/Loader';
+import Navigation from '../components/Navigation/Navigation'; // Import the Navigation component
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -12,44 +14,28 @@ const ContactsPage = lazy(() => import('../pages/ContactsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const token = useSelector(selectToken);
-  const logedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    if (!token || logedIn) return;
-
     dispatch(refreshUserThunk());
-  }, [token, dispatch, logedIn]);
-
-  const handleLogOut = () => {
-    // window.location.reload();
-
-        dispatch(logoutUserThunk());
-  };
+  }, [dispatch]);
 
   return (
     <div>
       <header>
-        <nav>
-          <NavLink to="/">Home</NavLink>
-          {logedIn ? (
-            <>
-              <NavLink to="/contacts">Contacts</NavLink>
-              <button onClick={handleLogOut}>Log Out</button>
-            </>
-          ) : (
-            <>
-              <NavLink to="/login">Login</NavLink>
-              <NavLink to="/register">Register</NavLink>
-            </>
-          )}
-        </nav>
+        <Navigation /> 
       </header>
       <main>
-        <Suspense>
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/contacts" element={<ContactsPage />} />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute redirectTo="/login">
+                  <ContactsPage />
+                </PrivateRoute>
+              }
+            />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
           </Routes>

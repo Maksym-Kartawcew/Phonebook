@@ -78,40 +78,43 @@ export const logoutUserThunk = createAsyncThunk(
   }
 );
 
-// // data contacts
-// export const fetchContactsThunk = createAsyncThunk(
-//   'contacts/getAll',
-//   async (_, thunkApi) => {
-//     try {
-//       const { data } = await $instance.get('/contacts');
+// data contacts
 
-//       return data;
-//     } catch (error) {
-//       return thunkApi.rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const requestContactsThunk = createAsyncThunk(
+  'contacts/getAll',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await $instance.get('/contacts');
 
-// export const addContact = createAsyncThunk(
-//   'contacts/addContact',
-//   async (newContact, thunkAPI) => {
-//     try {
-//       const response = await $instance.post('/contacts', newContact);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
 
-// export const deleteContact = createAsyncThunk(
-//   'contacts/deleteContact',
-//   async (contactId, thunkAPI) => {
-//     try {
-//       const response = await $instance.delete(`/contacts/${contactId}`);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const addContactThunk = createAsyncThunk(
+  'contacts/addContact',
+  async (contactData, thunkApi) => {
+    try {
+      const { data } = await $instance.post('/contacts', contactData);
+
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteContactThunk = createAsyncThunk(
+  'contacts/deleteContact',
+  async (contactId, thunkApi) => {
+    try {
+      const { data } = await $instance.delete(`/contacts/${contactId}`);
+
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
