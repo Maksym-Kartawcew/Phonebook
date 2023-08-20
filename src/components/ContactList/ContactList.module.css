@@ -1,3 +1,17 @@
+.contactsBox {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 1200px;
+  background: linear-gradient(
+    to bottom,
+    rgb(143, 229, 255, 0.6),
+    rgba(143, 229, 255, 0.6)
+  );
+  border-radius: 5px;
+  padding: 25px;
+}
+
 li {
   display: flex;
   justify-content: space-between;
@@ -12,20 +26,13 @@ li {
 }
 
 ul {
-  
   list-style: none;
   margin-top: 25px;
   padding: 0;
-
-  width: 500px;
+  width: 100%;
 }
 
-.contactsBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
-}
+
 
 .listItem {
   margin: 0;

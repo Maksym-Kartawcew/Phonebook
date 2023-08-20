@@ -1,46 +1,55 @@
 button {
-    justify-content: center;
-    align-items: center;
-    padding: 12px 24px;
-  
-    background: rgb(116, 201, 247);
-    background-color: rgb(116, 201, 247);
-    border-radius: 74px;
-    border: inherit;
-  
-    font-family: 'Roboto';
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 1.2;
-  
-    color: rgb(8, 46, 67);
-  }
-  
-  .sectionBox {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: auto;
-      }
-  
-  input {
-    justify-content: center;
-    align-items: center;
-    padding: 12px 24px;
-  
-    background-color: rgb(176, 227, 255);
-    border-radius: 74px;
-    border: inherit;
-  
-    font-family: 'Roboto';
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 1.2;
-  
-    color: rgb(8, 46, 67);
-  }
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
 
-  .inputBox {
-    display: flex;
-    gap: 15px;
-  }
+  background: rgb(116, 201, 247);
+  background-color: rgb(116, 201, 247);
+  border-radius: 74px;
+  border: inherit;
+
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.2;
+
+  color: rgb(8, 46, 67);
+}
+
+.formBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 25px;
+  width: 1200px;
+  background: linear-gradient(
+    to bottom,
+    rgb(143, 229, 255, 0.6),
+    rgba(143, 229, 255, 0.6)
+  );
+  border-radius: 5px;
+  padding: 25px;
+}
+
+.formInputBox {
+  margin: auto;
+  margin-bottom: 25px;
+}
+
+input {
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+
+  background-color: rgb(176, 227, 255);
+  border-radius: 74px;
+  border: inherit;
+
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.2;
+
+  color: rgb(8, 46, 67);
+}

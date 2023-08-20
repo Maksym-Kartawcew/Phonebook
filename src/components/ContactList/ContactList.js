@@ -25,7 +25,7 @@ const ContactList = () => {
   };
 
   return (
-    <div className={styles.sectionBox}>
+    <div className={styles.contactsBox}>
       <ul>
         {showContacts &&
           filteredContacts().map(contact => {

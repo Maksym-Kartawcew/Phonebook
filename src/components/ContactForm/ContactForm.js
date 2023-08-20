@@ -24,8 +24,10 @@ const ContactForm = () => {
   };
 
   return (
-    <div className={styles.sectionBox}>
+    <div className={styles.formBox}>
          <form onSubmit={handleSubmit}>
+        <div className={styles.formInputBox}>
+          <h3>Input new contact information</h3>
         <label>
           <p>Name:</p>
           <input name="contactName" type="text" required />
@@ -35,7 +37,7 @@ const ContactForm = () => {
           <p>Number:</p>
           <input name="contactNumber" type="text" required />
         </label>
-        <br />
+        </div>
         <button type="submit">Add contact</button>
             </form>
     </div>

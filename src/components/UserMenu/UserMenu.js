@@ -19,7 +19,7 @@ const UserMenu = () => {
 
   return (
     <div className={styles.wrapper}>
-      <p className={styles.account}>{userMail}</p>
+      <p className={styles.usermail}>{userMail}</p>
       <button onClick={handleLogout}>Log out</button>
     </div>
   );

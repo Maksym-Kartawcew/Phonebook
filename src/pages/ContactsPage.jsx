@@ -25,8 +25,8 @@ const Contacts = () => {
 
   return (
     <section>
-      <Filter />
       <ContactForm />
+      <Filter />
       {isLoading && <Loader />}
       {error && <p>Oops, some error occured... {error}</p>}
      <ContactList />

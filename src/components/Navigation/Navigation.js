@@ -10,7 +10,7 @@ const Navigation = () => {
   const loggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={styles.navBox}>
       <NavLink to="/" className={styles.navLink}>
         Home
       </NavLink>
@@ -22,11 +22,11 @@ const Navigation = () => {
           <UserMenu className={styles.userMenu}></UserMenu>
         </>
       ) : (
-        <div className={styles.loginWrapper}>
-          <NavLink to="/register" className={styles.navLogin}>
+        <div>
+          <NavLink to="/register" className={styles.navLink}>
             Sign up
           </NavLink>
-          <NavLink to="/login" className={styles.navLogin}>
+          <NavLink to="/login" className={styles.navLink}>
             Log in
           </NavLink>
         </div>

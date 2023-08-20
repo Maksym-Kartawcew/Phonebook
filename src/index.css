@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
 
-  background-image: linear-gradient(to bottom, rgb(103, 200, 224), rgba(103, 200, 224, 0.5)), url('./images/background.jpg');
+  background-image: url('./images/background.jpg');
   background-size: cover; 
   background-repeat: no-repeat; 
 
