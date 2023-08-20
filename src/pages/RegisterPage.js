@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/selectors';
 import { Navigate } from 'react-router-dom';
 import { registerUserThunk } from 'redux/operations';
+import styles from './Pages.module.css';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,6 @@ const RegisterPage = () => {
     const email = form.elements.userEmail.value;
     const password = form.elements.userPassword.value;
 
-
     dispatch(
       registerUserThunk({
         name,
@@ -29,7 +29,7 @@ const RegisterPage = () => {
   if (logedIn) return <Navigate to="/contacts" />;
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <h1>Register Your Account</h1>
       <form onSubmit={handleSubmit}>
         <label>

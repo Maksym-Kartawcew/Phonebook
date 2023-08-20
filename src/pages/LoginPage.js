@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/selectors';
 import { Navigate } from 'react-router-dom';
 import { loginUserThunk } from 'redux/operations';
+import styles from './Pages.module.css';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const LoginPage = () => {
   if (logedIn) return <Navigate to="/contacts" />;
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <h1>Log into Your Account</h1>
       <form onSubmit={handleSubmit}>
         <label>

@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { refreshUserThunk } from 'redux/operations';
 import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import PrivateRoute from './Private Route/PrivateRoute';
 import Loader from './Loader/Loader';
 import Navigation from '../components/Navigation/Navigation'; // Import the Navigation component
+import { selectIsRefreshing } from 'redux/selectors';
+
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -14,15 +16,19 @@ const ContactsPage = lazy(() => import('../pages/ContactsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing)
 
   useEffect(() => {
     dispatch(refreshUserThunk());
   }, [dispatch]);
 
-  return (
+
+  return isRefreshing ? (
+    <>Loading</>
+  ) : (
     <div>
       <header>
-        <Navigation /> 
+        <Navigation />
       </header>
       <main>
         <Suspense fallback={<Loader />}>

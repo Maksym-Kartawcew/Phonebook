@@ -53,13 +53,14 @@ export const refreshUserThunk = createAsyncThunk(
     const state = thunkApi.getState();
     const token = state.auth.token;
 
+    if(!token) return thunkApi.rejectWithValue(null)
     try {
       setToken(token);
       const { data } = await $instance.get('/users/current');
 
       return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(null);
     }
   }
 );
