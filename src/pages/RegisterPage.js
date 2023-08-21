@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/selectors';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { registerUserThunk } from 'redux/operations';
 import styles from './Pages.module.css';
 
@@ -30,28 +30,30 @@ const RegisterPage = () => {
 
   return (
     <div className={styles.wrapper}>
-      <h1>Register Your Account</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Name:</p>
-          <input name="userName" type="text" required minLength={3} />
-        </label>
-        <br />
-        <label>
-          <p>Email:</p>
-          <input name="userEmail" type="email" required />
-        </label>
-        <br />
-        <label>
-          <p>Password:</p>
-          <input name="userPassword" type="password" required minLength={7} />
-        </label>
-        <br />
-        <button type="submit">Create account</button>
-      </form>
-      {/* <div>
-        Already have an account? <a href="/login">Log in here.</a>{' '}
-      </div> */}
+           <h1>Register Your Account</h1>
+        <form onSubmit={handleSubmit}>
+        <div className={styles.inputBox}>
+          <label>
+            <p>Name:</p>
+            <input name="userName" type="text" required minLength={3} />
+          </label>
+          <br />
+          <label>
+            <p>Email:</p>
+            <input name="userEmail" type="email" required />
+          </label>
+          <br />
+          <label>
+            <p>Password:</p>
+            <input name="userPassword" type="password" required minLength={7} />
+          </label>
+          </div>
+                 <button type="submit">Create account</button>
+        </form>
+      
+      <div>
+      Already have an account? <Link to="/login">Log in here.</Link>
+      </div>
     </div>
   );
 };

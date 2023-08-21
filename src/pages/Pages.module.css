@@ -59,3 +59,8 @@ input {
 
   color: rgb(8, 46, 67);
 }
+
+.inputBox {
+  margin: auto;
+  margin-bottom: 25px;
+}

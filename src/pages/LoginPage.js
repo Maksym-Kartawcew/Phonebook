@@ -31,21 +31,19 @@ const LoginPage = () => {
     <div className={styles.wrapper}>
       <h1>Log into Your Account</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          <p>Email:</p>
-          <input name="userEmail" type="email" required />
-        </label>
-        <br />
-        <label>
-          <p>Password:</p>
-          <input name="userPassword" type="password" required minLength={7} />
-        </label>
-        <br />
+        <div className={styles.inputBox}>
+          <label>
+            <p>Email:</p>
+            <input name="userEmail" type="email" required />
+          </label>
+          <br />
+          <label>
+            <p>Password:</p>
+            <input name="userPassword" type="password" required minLength={7} />
+          </label>
+        </div>
         <button type="submit">Sign In</button>
       </form>
-      {/* <div>
-        Already have an account? <a href="/login">Log in here.</a>{' '}
-      </div> */}
     </div>
   );
 };

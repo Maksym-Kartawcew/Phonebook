@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUserThunk } from 'redux/operations';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import PrivateRoute from './Private Route/PrivateRoute';
 import Loader from './Loader/Loader';

@@ -54,3 +54,11 @@ input {
 
   color: rgb(8, 46, 67);
 }
+
+.sectionTitle {
+  margin: 0;
+  color: rgb(0, 166, 255);
+  font-weight: 700;
+  font-size: 25px;
+  text-align: center;
+}

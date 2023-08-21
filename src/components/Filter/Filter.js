@@ -14,7 +14,7 @@ const Filter = () => {
 
   return (
     <div className={styles.filterBox}>
-      <p className={styles.filterTitle}>Find contact by name</p>
+      <p className={styles.sectionTitle}>Find contact by name</p>
       <input
         type="text"
         name="filter"

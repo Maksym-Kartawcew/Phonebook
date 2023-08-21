@@ -1,7 +1,7 @@
 .contactsBox {
-  display: flex;
-  justify-content: center;
+   justify-content: center;
   margin: auto;
+  margin-bottom: 50px;
   width: 1200px;
   background: linear-gradient(
     to bottom,
@@ -32,9 +32,13 @@ ul {
   width: 100%;
 }
 
-
-
-.listItem {
+.sectionTitle {
   margin: 0;
-  padding: 0;
+  color: rgb(0, 166, 255);
+  font-weight: 700;
+  font-size: 25px;
+  text-align: center;
 }
+
+
+
