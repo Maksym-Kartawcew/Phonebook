@@ -7,6 +7,7 @@ import PrivateRoute from './Private Route/PrivateRoute';
 import Loader from './Loader/Loader';
 import Navigation from '../components/Navigation/Navigation'; // Import the Navigation component
 import { selectIsRefreshing } from 'redux/selectors';
+import { ToastContainer } from 'react-toastify';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -29,6 +30,7 @@ export const App = () => {
         <Navigation />
       </header>
       <main>
+        <ToastContainer />
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />

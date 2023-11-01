@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const $instance = axios.create({
   baseURL: 'https://connections-api.herokuapp.com',
@@ -24,8 +26,11 @@ export const registerUserThunk = createAsyncThunk(
 
       return data;
     } catch (error) {
+      let message = 'User with such email already exists';
+      toast.error(message);
+
       return thunkApi.rejectWithValue({
-        message: error.response.data,
+        message,
       });
     }
   }
@@ -40,8 +45,11 @@ export const loginUserThunk = createAsyncThunk(
 
       return data;
     } catch (error) {
+      let message = 'Email or password is incorrect';
+      toast.error(message);
+
       return thunkApi.rejectWithValue({
-        message: error.response.data,
+        message,
       });
     }
   }
@@ -53,7 +61,7 @@ export const refreshUserThunk = createAsyncThunk(
     const state = thunkApi.getState();
     const token = state.auth.token;
 
-    if(!token) return thunkApi.rejectWithValue(null)
+    if (!token) return thunkApi.rejectWithValue(null);
     try {
       setToken(token);
       const { data } = await $instance.get('/users/current');

@@ -15,7 +15,7 @@
   margin: auto;
   margin-bottom: 25px;
   margin-top: 25px;
-  width: 1200px;
+  max-width: 1200px;
   background: linear-gradient(
     to bottom,
     rgb(143, 229, 255, 0.6),
